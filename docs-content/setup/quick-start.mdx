@@ -15,48 +15,79 @@ Al final de esta página vas a tener:
 
 **Tiempo estimado: 30–60 minutos** (la primera vez puede tardar un poco más).
 
-## Antes de empezar
+## Antes de empezar (haz esto primero)
 
-Necesitas cuentas en:
+Esto es lo primero de lo primero. Hazlo antes de tocar el código:
 
-- [GitHub](https://github.com)
-- [Vercel](https://vercel.com) — login con GitHub
-- [Supabase](https://supabase.com) — login con GitHub
-- [OpenAI](https://platform.openai.com) — para Sem 3+ (opcional ahora)
-- [Resend](https://resend.com) — para enviar emails (opcional Sem 1)
+**1 · Crea tus cuentas** (gratis, puedes hacer login con GitHub en todas):
+- [GitHub](https://github.com), [Vercel](https://vercel.com), [Supabase](https://supabase.com).
+- [OpenAI](https://platform.openai.com) y [Resend](https://resend.com) son para más adelante (opcionales al inicio).
 
-También necesitas instalado:
-
-- **Node 20 o 22 LTS** ([descarga aquí](https://nodejs.org)) — usa una versión **par** (LTS). El repo trae un `.nvmrc`: con nvm corre `nvm use`.
-- **yarn 1.x** — después de instalar Node corre `npm install -g yarn`
-- **Cursor** ([cursor.com](https://cursor.com))
-
-## Paso 1 · Crea tu repo desde el template
-
-Ve al [repo de VibeFast en GitHub](https://github.com/arampersand/VibeFast) y haz click en **"Use this template" → Create a new repository**.
-
-Ponle el nombre de tu producto (ej. `mi-producto-mvp`). Marca como privado por ahora.
-
-## Paso 2 · Clona y abre con Cursor
-
-Clona **tu** repo (el que creaste con el template) y ábrelo en Cursor:
+**2 · Instala las herramientas** en tu compu. La guía paso a paso por sistema operativo está en [Prepara tu compu (Mac / Windows)](/docs/fundamentos/prepara-tu-compu). En resumen necesitas:
+- **Node 20 o 22 LTS** ([nodejs.org](https://nodejs.org)) — usa una versión **par** (LTS).
+- **yarn**: `npm install -g yarn`
+- **Supabase CLI** (para subir la base de datos):
 
 ```bash
-git clone https://github.com/<tu-usuario>/<tu-producto>.git
-cd <tu-producto>
+npm install -g supabase
+```
+(En Mac también puedes: `brew install supabase/tap/supabase`.) Verifica con `supabase --version`.
+- **Cursor** ([cursor.com](https://cursor.com)).
+
+**3 · Crea tu proyecto de Supabase ya** — tarda ~1–2 min en provisionar, así estará listo cuando lo necesites. Entra a [supabase.com/dashboard](https://supabase.com/dashboard) → **New project**, elige la región más cercana (`South America (São Paulo)` o `US East`) y déjalo creándose mientras sigues.
+
+## Paso 1 · Haz tu fork (primero esto)
+
+Antes que nada, crea **tu propia copia** del repo en GitHub. No trabajas sobre el original — trabajas sobre tu copia.
+
+1. Abre este link en tu navegador, en una **pestaña nueva**: **[github.com/arampersand/VibeFast](https://github.com/arampersand/VibeFast)**.
+2. Arriba a la derecha, haz click en el botón **Fork** → **Create fork**. Espera unos segundos.
+3. Listo: ahora tienes tu copia en `github.com/TU-USUARIO/VibeFast`. **Sobre esa** vas a trabajar de aquí en adelante.
+
+<Callout type="info" title="Fork vs. Use this template">
+El **Fork** es lo más simple (un clic) y queda ligado al original para traer mejoras después — por eso lo recomendamos. Si prefieres un repo totalmente limpio, sin el historial de VibeFast, usa **"Use this template" → Create a new repository** en el mismo repo.
+</Callout>
+
+## Paso 2 · Clónalo en tu computadora
+
+Ahora baja **tu fork** a tu compu. Primero elige **en qué carpeta** vivirá (conviene una carpeta para tus proyectos).
+
+En **Mac** (Terminal):
+```bash
+cd ~/Documents
+mkdir -p proyectos && cd proyectos
+```
+
+En **Windows** (PowerShell):
+```powershell
+cd ~\Documents
+mkdir proyectos; cd proyectos
+```
+
+Ya estás parado en `Documents/proyectos`. Ahora necesitas el link de **tu fork**.
+
+<Callout type="danger" title="El link de abajo es un EJEMPLO — NO lo copies tal cual">
+Cada quien tiene su propio link. Consíguelo así:
+
+1. Ve a **tu fork** en GitHub (`github.com/TU-USUARIO/VibeFast`). ¿No lo tienes? Es que **no forkeaste** — regresa al **Paso 1**.
+2. Haz click en el **botón verde `Code`**.
+3. Pestaña **HTTPS** → copia el link (termina en `.git`).
+
+Ese link copiado es el que va después de `git clone`.
+</Callout>
+
+Con tu link copiado, clónalo y ábrelo en Cursor (aquí `TU-USUARIO` es solo ejemplo — usa tu link real):
+
+```bash
+git clone https://github.com/TU-USUARIO/VibeFast.git
+cd VibeFast
 cursor .
 ```
 
-<Callout type="info" title="¿Solo quieres probar el boilerplate?">
-Si aún no creaste tu repo y solo quieres explorar VibeFast, clona el original directo y desconéctalo de su origin para empezar limpio:
+`git clone` crea la carpeta `VibeFast/` con todo el código adentro, dentro de la carpeta donde estés parado.
 
-```bash
-git clone https://github.com/arampersand/VibeFast.git mi-producto
-cd mi-producto
-git remote remove origin
-yarn install
-yarn dev
-```
+<Callout type="info" title="Tip: ¿dónde estoy parado?">
+Corre `pwd` (Mac) o `cd` (Windows) para ver tu carpeta actual, y `ls` (Mac) / `dir` (Windows) para ver qué hay. Así confirmas que clonaste en el lugar correcto.
 </Callout>
 
 ## Paso 3 · Instala dependencias
@@ -69,24 +100,44 @@ yarn install
 
 Esto puede tardar 1–2 minutos la primera vez.
 
-## Paso 4 · Configura Supabase
+<Callout type="warning" title="¿Falla el install?">
+Los tropiezos más comunes (versión de Node incorrecta, `yarn: command not found`, permisos, red) y su solución están en [Errores comunes → instalar dependencias](/docs/troubleshooting/errores-comunes).
+</Callout>
 
-1. Crea un proyecto nuevo en [supabase.com/dashboard](https://supabase.com/dashboard) (región más cercana: `South America (São Paulo)` o `US East`).
-2. Espera a que termine de provisionar (~1 min).
-3. Ve a **Settings → API** y copia:
-   - `URL` → será tu `NEXT_PUBLIC_SUPABASE_URL`
-   - `anon public` key → será tu `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-   - `service_role` key → será tu `SUPABASE_SERVICE_ROLE_KEY` (¡no la compartas!)
+## Paso 4 · Saca tus keys de Supabase
+
+Tu proyecto ya está creado (lo hiciste en *Antes de empezar*). Necesitas **3 valores**. Aquí está exactamente de dónde sale cada uno:
+
+**`NEXT_PUBLIC_SUPABASE_URL`** y **`NEXT_PUBLIC_SUPABASE_ANON_KEY`** — la forma rápida:
+1. Abre tu proyecto en el dashboard y haz click en el **botón verde `Connect`** (arriba, junto al nombre del proyecto).
+2. Pestaña **App Frameworks** → **Next.js**: ahí ves las dos, ya con su nombre. Cópialas.
+
+*Alternativa:* engrane **Project Settings** (abajo-izquierda) → **API**. Ahí está **Project URL** (= `NEXT_PUBLIC_SUPABASE_URL`) y, en **Project API keys**, la **anon public** (= `NEXT_PUBLIC_SUPABASE_ANON_KEY`).
+
+**`SUPABASE_SERVICE_ROLE_KEY`** (la secreta):
+- **Project Settings → API → Project API keys → `service_role`** (dice *secret*). Haz click en **Reveal** y cópiala.
+
+<Callout type="info" title="¿Cómo se ve cada valor?">
+La **URL** termina en `.supabase.co` (ej. `https://abcd1234.supabase.co`). Las dos **keys** son cadenas largas que empiezan con `eyJ...`.
+</Callout>
+
+<Callout type="warning" title="La service_role es secreta">
+Es la llave maestra de tu base de datos. Nunca la subas a git ni la pongas en el navegador. La `anon` sí es pública (por eso lleva `NEXT_PUBLIC_`).
+</Callout>
 
 ## Paso 5 · Crea tu `.env.local`
 
-Copia el template:
+Las **variables de entorno** son datos de configuración y secretos (tus keys). Viven en un archivo llamado `.env.local` **dentro de la carpeta `web/`** (no en la raíz del proyecto): la ruta es `web/.env.local`.
+
+El repo ya trae una plantilla, **`web/.env.example`**, con todos los nombres de variables (sin valores). Cópiala a `.env.local`:
 
 ```bash
 cp web/.env.example web/.env.local
 ```
 
-Abre `web/.env.local` y pega las keys de Supabase del paso anterior. El archivo se ve así:
+**Ábrela en Cursor**: en el explorador de archivos (panel izquierdo), entra a la carpeta `web/` y abre `.env.local`. Empieza con punto, así que es un archivo "oculto", pero en el árbol de Cursor sí aparece.
+
+Cada variable va en **su propia línea**, con el formato `NOMBRE=valor` — **sin espacios alrededor del `=` y sin comillas**. Por ejemplo: `NEXT_PUBLIC_SUPABASE_URL=https://xxxx.supabase.co`. El archivo se ve así:
 
 ```bash
 # Sem 1 — obligatorias
@@ -105,13 +156,29 @@ NEXT_PUBLIC_POSTHOG_KEY=
 
 Por ahora solo necesitas las 4 primeras. El detalle de cada una (y de dónde sale) está en [Variables de entorno](/docs/setup/variables-de-entorno).
 
+<Callout type="info" title="Al cambiar el .env.local, reinicia">
+Las variables de entorno **no se recargan solas**. Cada vez que edites `.env.local`, detén `yarn dev` (`Ctrl+C`) y vuelve a correrlo.
+</Callout>
+
 <Callout type="warning" title="Nunca subas .env.local a git">
 Ya está en `.gitignore`. Mantenlo así. La `service_role` key es como la llave maestra de tu base de datos.
 </Callout>
 
 ## Paso 6 · Sube el schema a Supabase
 
-(Esto vendrá en Sem 2 cuando agreguemos Auth + DB. Por ahora puedes saltarlo y correr la landing en local.)
+Ya instalaste el **Supabase CLI** en *Antes de empezar*. Conéctalo a tu proyecto y sube las tablas:
+
+```bash
+supabase login
+supabase link --project-ref <tu-project-ref>
+supabase db push
+```
+
+Tu `project-ref` está en la URL del dashboard (`https://supabase.com/dashboard/project/TU-REF`) o en **Project Settings → General**.
+
+<Callout type="info" title="¿Solo quieres ver la landing?">
+Puedes saltarte este paso por ahora: la landing corre sin base de datos. Vuelve aquí en **Sem 2** cuando agreguemos Auth + DB.
+</Callout>
 
 ## Paso 7 · Personaliza tu producto
 
@@ -147,14 +214,18 @@ Abre `http://localhost:3000`. Deberías ver tu landing con tus textos.
 
 ## Paso 9 · Deploy a Vercel
 
-1. Ve a [vercel.com/new](https://vercel.com/new).
-2. **Import** tu repo de GitHub.
-3. **Root Directory**: pon `web` (importante porque es monorepo).
-4. **Framework Preset**: Next.js (se autodetecta).
-5. En **Environment Variables**, agrega todas las que tienes en `web/.env.local`.
+1. Entra a [vercel.com/new](https://vercel.com/new) (haz **login con GitHub**).
+2. En la lista de repos, busca **tu fork** y haz click en **Import**. (Si no aparece, click en *Adjust GitHub App Permissions* y dale acceso.)
+3. **Root Directory**: click en **Edit** y selecciona/escribe **`web`**. Es clave — el proyecto es un monorepo y la app vive en `web/`.
+4. **Framework Preset**: Next.js (se autodetecta, no lo toques).
+5. Expande **Environment Variables** y agrega **cada** variable de tu `web/.env.local` (nombre y valor, una por una). Mínimo las **4 de Supabase** para que no falle.
 6. Click **Deploy**.
 
 En 2–3 minutos tienes una URL pública. Compártela.
+
+<Callout type="warning" title="¿El build falla con 'Module not found'?">
+Casi siempre es que olvidaste el **Root Directory = `web`**. Ve a Project → Settings → General → Root Directory, ponlo en `web` y vuelve a deployar.
+</Callout>
 
 ## Estructura del proyecto
 

@@ -8,18 +8,56 @@ order: 1
 Lista en construcción. Se llena durante las primeras cohortes con los errores reales.
 </Callout>
 
-## `yarn install` falla
+## Errores al instalar dependencias (`yarn install`)
 
-**Síntoma**: errores de versión de Node o paquetes incompatibles.
-
-**Fix**:
+Los más comunes al arrancar. Primero verifica tus versiones:
 
 ```bash
-node --version  # Debe ser >= 20
+node --version  # Debe ser 20.x o 22.x (par/LTS)
 yarn --version  # Debe ser 1.22.x
-rm -rf node_modules yarn.lock
+```
+
+### `The engine "node" is incompatible` / versión de Node incorrecta
+**Causa**: tienes una versión de Node impar o muy vieja (ej. 19, 21, 23).
+
+**Fix**: instala una versión **par LTS** (20 o 22). Con [nvm](https://github.com/nvm-sh/nvm): `nvm install 22 && nvm use 22`. Con Homebrew (Mac): `brew install node@22`. Luego `yarn install` de nuevo. Ver [Prepara tu compu](/docs/fundamentos/prepara-tu-compu).
+
+### `yarn: command not found` / `no se reconoce yarn`
+**Causa**: yarn no está instalado o la terminal no lo ve.
+
+**Fix**: `npm install -g yarn`. En **Windows**, cierra y reabre la terminal después. Verifica con `yarn --version`.
+
+### `EACCES: permission denied` al instalar yarn
+**Síntoma**: falla `npm install -g yarn` por permisos.
+
+**Fix (Mac)**: usa `sudo npm install -g yarn` (o, mejor, Homebrew: `brew install yarn`). Al usar `sudo` te pide la contraseña de tu Mac: **no se ve nada mientras la escribes, es normal** — escríbela y Enter. **Windows**: abre la terminal **como Administrador** y reintenta.
+
+### Windows: `running scripts is disabled` / no se puede cargar `yarn.ps1`
+**Síntoma**: en PowerShell, al correr `yarn` (o `npm`) dice que la ejecución de scripts está deshabilitada.
+
+**Fix**: corre **una vez** esto en PowerShell y responde `S`/`Y`:
+```powershell
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+```
+Cierra y reabre la terminal, y reintenta.
+
+### Se queda pegado o falla por red / `ETIMEDOUT` / `ENOTFOUND`
+**Causa**: conexión intermitente al registro de paquetes.
+
+**Fix**: revisa tu internet y reintenta `yarn install`. Si sigue, limpia caché: `yarn cache clean` y reintenta.
+
+### Paquetes corruptos / lockfile inconsistente
+**Síntoma**: errores raros de módulos tras un install a medias.
+
+**Fix (reinstalación limpia)**:
+```bash
+rm -rf node_modules
 yarn install
 ```
+
+<Callout type="info" title="Si nada funciona">
+Copia el error **completo** y pégaselo a Cursor pidiendo el fix paso a paso. Cómo hacerlo bien: [Leer errores sin pánico](/docs/troubleshooting/leer-errores).
+</Callout>
 
 ## Landing carga pero `/docs` da 404
 

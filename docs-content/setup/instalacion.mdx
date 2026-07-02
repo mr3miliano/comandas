@@ -16,8 +16,13 @@ Si prefieres el recorrido guiado paso a paso, ve a [Quick start](/docs/setup/qui
 Los pasos exactos cambian según tu equipo. Sigue la guía por sistema operativo: [Prepara tu compu (Mac / Windows)](/docs/fundamentos/prepara-tu-compu).
 </Callout>
 
-- [ ] **Node 20 o 22 LTS** — [descarga aquí](https://nodejs.org). Usa una versión **par** (LTS). El repo trae un `.nvmrc`: con [nvm](https://github.com/nvm-sh/nvm) corre `nvm use` y toma la correcta.
-- [ ] **yarn 1.x** — después de instalar Node: `npm install -g yarn`
+- [ ] **Homebrew (solo Mac)** — el gestor de paquetes de Mac; facilita instalar todo lo demás:
+  ```bash
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  ```
+- [ ] **Node 20 o 22 LTS** — [nodejs.org](https://nodejs.org) (versión **par**/LTS). En Mac con Homebrew: `brew install node`. El repo trae un `.nvmrc`: con [nvm](https://github.com/nvm-sh/nvm) corre `nvm use`.
+- [ ] **yarn 1.x** — después de instalar Node: `npm install -g yarn` (en Mac, si falla por permisos: `sudo npm install -g yarn`).
+- [ ] **Supabase CLI** — para subir la base de datos: `npm install -g supabase` (Mac: `brew install supabase/tap/supabase`).
 - [ ] **Git** — normalmente ya viene; verifica con `git --version`.
 - [ ] **Cursor** — [cursor.com](https://cursor.com). Es el editor con IA que usarás para construir.
 

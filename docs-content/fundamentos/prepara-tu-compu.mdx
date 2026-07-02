@@ -17,19 +17,45 @@ Antes de clonar VibeFast necesitas 4 programas en tu compu. Los pasos cambian en
 ### 1. La terminal (ya la tienes)
 Búscala con `Cmd + Espacio`, escribe **Terminal** y Enter. Es la app negra de comandos.
 
-### 2. Node (versión LTS)
-La forma más simple: descarga el instalador **LTS** desde [nodejs.org](https://nodejs.org), ábrelo (`.pkg`) y dale siguiente hasta terminar. Sirve igual para Mac con chip Apple (M1/M2/M3) o Intel; el instalador lo detecta solo.
+### 2. Homebrew (el gestor de paquetes de Mac)
+Homebrew instala programas desde la terminal con un solo comando. Pega esto y sigue las instrucciones (te va a pedir tu contraseña de Mac):
 
-### 3. yarn
-En la terminal:
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+Al terminar, si te dice *"add Homebrew to your PATH"* con unos comandos, cópialos y córrelos tal cual. Verifica con `brew --version`.
+
+<Callout type="info" title="¿No quieres usar Homebrew?">
+Puedes instalar Node con el instalador **LTS** de [nodejs.org](https://nodejs.org) (`.pkg`) y saltarte este paso. Pero Homebrew te facilita instalar (y actualizar) todo lo demás.
+</Callout>
+
+### 3. Node
+Con Homebrew:
+```bash
+brew install node
+```
+(O el instalador **LTS** de [nodejs.org](https://nodejs.org) si no usas brew.) Verifica con `node -v`.
+
+### 4. yarn
 ```bash
 npm install -g yarn
 ```
 
-### 4. Git
-Mac lo trae casi listo. Corre `git --version`: si te falta, aparece un botón para instalar las *Command Line Tools*. Acéptalo. (O corre `xcode-select --install`.)
+<Callout type="warning" title="¿Dice 'permission denied' / EACCES?">
+Es por permisos. Reintenta con `sudo`:
 
-### 5. Cursor
+```bash
+sudo npm install -g yarn
+```
+
+Te va a pedir la **contraseña de tu Mac**. **No se ve nada mientras la escribes** (ni puntitos) — es normal por seguridad. Escríbela completa y dale Enter. (Alternativa sin sudo: `brew install yarn`.)
+</Callout>
+
+### 5. Git
+Con Homebrew: `brew install git`. (Mac también lo ofrece vía *Command Line Tools*: corre `git --version` y acepta el botón que aparece, o `xcode-select --install`.)
+
+### 6. Cursor
 Descarga desde [cursor.com](https://cursor.com), abre el `.dmg` y arrastra Cursor a **Aplicaciones**.
 
 ## 🪟 En Windows
@@ -49,6 +75,16 @@ En PowerShell:
 ```powershell
 npm install -g yarn
 ```
+
+<Callout type="warning" title="¿PowerShell no deja ejecutar scripts?">
+Si al correr `yarn` (o `npm`) sale algo como *"running scripts is disabled on this system"* / *"no se puede cargar el archivo yarn.ps1"*, corre **una vez** esto en PowerShell y responde `S` (o `Y`):
+
+```powershell
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+```
+
+Luego cierra y reabre la terminal y reintenta.
+</Callout>
 
 ### 4. Git
 Descarga desde [git-scm.com](https://git-scm.com/download/win), abre el instalador y acepta **todas las opciones por defecto** (dale siguiente hasta el final). Esto también instala *Git Bash*, otra terminal útil.

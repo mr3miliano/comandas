@@ -6,6 +6,19 @@ order: 3
 
 Todas las keys del proyecto viven en `web/.env.local` (que **nunca** sube a git). El archivo `web/.env.example` te muestra qué variables necesitas.
 
+## De dónde sacar cada key
+
+| Servicio | Dónde | Paso |
+|----------|-------|------|
+| **Supabase** (URL + anon + service_role) | [dashboard](https://supabase.com/dashboard) | Botón verde **Connect → Next.js**, o **Settings → API**. Detalle en [Quick start · Paso 4](/docs/setup/quick-start). |
+| **OpenAI** (`OPENAI_API_KEY`) | [platform.openai.com/api-keys](https://platform.openai.com/api-keys) | **Create new secret key** → cópiala (empieza con `sk-`). Solo se muestra una vez. |
+| **Resend** (`RESEND_API_KEY`) | [resend.com/api-keys](https://resend.com/api-keys) | **Create API Key** → cópiala (empieza con `re_`). |
+| **PostHog** (`NEXT_PUBLIC_POSTHOG_KEY`) | [posthog.com](https://posthog.com) | Project Settings → Project API Key (`phc_...`). Opcional. |
+
+<Callout type="info" title="Guárdalas al momento">
+OpenAI y Resend muestran la key **una sola vez**. Cópiala a tu `.env.local` en ese momento; si la pierdes, genera una nueva.
+</Callout>
+
 ## Las críticas (Sem 1)
 
 ```bash
