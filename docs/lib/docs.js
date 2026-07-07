@@ -10,7 +10,7 @@ const DOCS_DIR = path.join(process.cwd(), "..", "docs-content")
 const SECTION_LABELS = {
   intro: "Introducción",
   fundamentos: "Fundamentos",
-  setup: "Setup",
+  setup: "Empieza aquí",
   tutoriales: "Tutoriales por semana",
   features: "Features",
   componentes: "Componentes",
@@ -114,8 +114,8 @@ function getSectionOrder(slug) {
   // Orden canónico de las secciones top-level
   const ORDER = [
     "intro",
-    "fundamentos",
     "setup",
+    "fundamentos",
     "tutoriales",
     "features",
     "componentes",
