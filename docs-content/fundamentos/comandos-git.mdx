@@ -12,9 +12,9 @@ En [Git en 5 minutos](/docs/fundamentos/git-basico) haces todo con **clics** den
 Ábrela con **Terminal → New Terminal** o el atajo `` Ctrl+` `` (en Mac también `` Cmd+` ``). ¿Nunca la abriste? → [La terminal sin miedo](/docs/fundamentos/terminal).
 </Callout>
 
-## Parte 1 · Configura Git (una sola vez)
+## Parte 1 · Configura Git
 
-Antes de tu primer commit, Git necesita saber **quién eres** para firmar cada guardado con tu nombre. Corre estos dos comandos **cambiando** el nombre y el correo por los tuyos:
+Esto se hace **una sola vez**. Antes de tu primer commit, Git necesita saber **quién eres** para firmar cada guardado con tu nombre. Corre estos dos comandos **cambiando** el nombre y el correo por los tuyos:
 
 ```bash
 git config --global user.name "Tu Nombre"
@@ -47,7 +47,7 @@ Configurar tu nombre **no** te conecta con GitHub — eso es aparte. Para que Cu
 ✅ Ya configuraste tu llave SSH (o sabes que es el siguiente paso).
 </Checkpoint>
 
-## Parte 2 · Los comandos que vas a usar
+## Parte 2 · Los comandos
 
 No hay que memorizarlos: vuelve aquí cuando dudes. Todos se corren **parado dentro de la carpeta de tu proyecto** (usa `cd VibeFast` para entrar).
 
@@ -59,7 +59,7 @@ No hay que memorizarlos: vuelve aquí cuando dudes. Todos se corren **parado den
 | `cd VibeFast` | Entra a la carpeta del proyecto para poder correr los demás comandos. |
 | `cursor .` | Abre la carpeta actual en Cursor. |
 
-### Ver qué está pasando (nunca cambia nada)
+### Ver qué está pasando
 
 | Comando | Qué hace |
 |---------|----------|
@@ -83,7 +83,7 @@ No hay que memorizarlos: vuelve aquí cuando dudes. Todos se corren **parado den
 | `git push` | Sube tus commits a GitHub. Esto también **publica** tu sitio si usas Vercel. |
 | `git pull` | Trae a tu compu los cambios que estén en GitHub. Hazlo antes de empezar a trabajar. |
 
-### Ramas (para probar sin romper lo que funciona)
+### Ramas
 
 | Comando | Qué hace |
 |---------|----------|
@@ -105,7 +105,7 @@ No hay que memorizarlos: vuelve aquí cuando dudes. Todos se corren **parado den
 ✅ Sabes que `pull → add → commit → push` es la rutina.
 </Checkpoint>
 
-## Parte 3 · Traer mejoras del repo original (sync de tu fork)
+## Parte 3 · Sync de tu fork
 
 Tú trabajas sobre **tu fork** (tu copia). El repo original de VibeFast sigue mejorando, y de vez en cuando querrás **traer esas mejoras** a tu copia. Hay dos formas.
 
