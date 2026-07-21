@@ -22,10 +22,10 @@ const config = {
   // Identidad del producto
   // -----------------------------------------------------------
   app: {
-    name: "VibeFast",
+    name: "TapTable",
     description:
-      "Boilerplate AI-native para founders. Construido para el Curso de Vibecoding Remotto.",
-    domain: "vibefast.dev", // sin https://, sin www
+      "Optimiza la operación de tu restaurante con comandas digitales en tiempo real que eliminan errores y aceleran el servicio.",
+    domain: "taptable.com", // sin https://, sin www (cada cliente opera bajo su propio subdominio, ej: restaurante.taptable.com)
     locale: "es", // "es" | "en"
     // URL pública: usa NEXT_PUBLIC_APP_URL en .env. En este config solo definimos el default.
     defaultUrl: "http://localhost:3000",
@@ -36,9 +36,9 @@ const config = {
   // -----------------------------------------------------------
   brand: {
     // Color primario en HEX. DaisyUI lo aplica como --color-primary via theme.
-    primary: "#7c3aed", // violet-600
+    primary: "#D85A30", // coral/naranja cálido tipo salsa
     // Logo: puede ser texto o ruta a /public/logo.svg
-    logoText: "VibeFast",
+    logoText: "TapTable",
     logoSrc: null,
     // Estilo del bordeado global (DaisyUI usa esto para botones, cards)
     radius: "1rem",
@@ -107,12 +107,12 @@ const config = {
       { label: "Docs", href: "/docs" },
     ],
     hero: {
-      eyebrow: "Curso Vibecoding · Remotto × Startup Chihuahua",
-      title: "De 0 a producto AI-native en 11 semanas.",
+      eyebrow: "Comandas en tiempo real",
+      title: "Elimina errores de cocina y acelera el servicio de tu restaurante",
       subtitle:
-        "VibeFast es la plantilla del curso: Next.js, Supabase, OpenAI y MCP cableados desde el día 1. Tú extiendes con prompts en Cursor.",
-      cta: { label: "Únete al waitlist", href: "#waitlist" },
-      ctaSecondary: { label: "Ver docs", href: "/docs" },
+        "Tus clientes piden escaneando un código QR y la orden sincroniza al instante. Cada sucursal opera bajo su propio subdominio personalizado.",
+      cta: { label: "Empieza gratis", href: "#waitlist" },
+      ctaSecondary: { label: "Ver demo", href: "#demo" },
     },
     problem: {
       eyebrow: "El problema",
@@ -138,61 +138,46 @@ const config = {
       ],
     },
     features: {
-      eyebrow: "Lo que ya viene listo",
-      title: "Stack completo, una sola decisión por capa.",
-      subtitle: "No pierdes tiempo eligiendo herramientas. Te enfocas en tu producto.",
+      eyebrow: "Beneficios principales",
+      title: "Todo lo que tu restaurante necesita para vender más.",
+      subtitle: "Optimiza la experiencia de tus comensales y el flujo de trabajo de tu equipo.",
       items: [
         {
-          icon: "Sparkles",
-          title: "AI nativa",
-          body: "OpenAI con structured outputs, tool use, agentes con LangGraph y MCP. Listo para activar.",
-        },
-        {
-          icon: "Database",
-          title: "Supabase + Auth",
-          body: "Base de datos con RLS, Google Auth y tablas pre-modeladas. No diseñas schema desde cero.",
-        },
-        {
           icon: "Zap",
-          title: "Deploy en minutos",
-          body: "Vercel + Supabase Cloud. Una URL pública el primer día.",
+          title: "Sincronización en tiempo real",
+          body: "Las órdenes se sincronizan instantáneamente entre mesa, cocina y meseros para eliminar por completo los tiempos muertos."
         },
         {
-          icon: "BookOpen",
-          title: "Docs semana a semana",
-          body: "Tutoriales mapeados al temario del curso, con prompts de Cursor listos para copiar.",
+          icon: "Store",
+          title: "Gestión multi-sucursal",
+          body: "Administra múltiples sucursales con un menú centralizado y control individual por sede desde una sola cuenta."
         },
         {
-          icon: "Mail",
-          title: "Email + analytics",
-          body: "Resend para correos transaccionales y PostHog opcional para tracking.",
-        },
-        {
-          icon: "Cpu",
-          title: "Hardware-ready",
-          body: "Conexión MCP al ESP-Claw para el caso de hardware con IA del Módulo 3.",
-        },
+          icon: "QrCode",
+          title: "Cero fricción para el comensal",
+          body: "Los comensales piden directamente desde su celular escaneando un código QR, sin descargar aplicaciones ni registrarse."
+        }
       ],
     },
     faq: {
       eyebrow: "Preguntas frecuentes",
-      title: "Lo que todo founder pregunta antes de arrancar.",
+      title: "Lo que los dueños de restaurantes quieren saber.",
       items: [
         {
-          q: "¿Necesito saber programar?",
-          a: "No. El curso asume founders no técnicos. Construyes describiendo en Cursor; el boilerplate hace el resto.",
+          q: "¿Cuál es el costo y cómo es el proceso de implementación?",
+          a: "Ofrecemos planes mensuales adaptados al tamaño de tu restaurante. La implementación es inmediata: subes tu menú, generas los códigos QR y puedes empezar a tomar órdenes el mismo día.",
         },
         {
-          q: "¿Cuánto cuesta correr esto?",
-          a: "Vercel y Supabase tienen tiers gratuitos generosos. OpenAI cobra por uso: con gpt-4o-mini, el costo de un MVP del curso ronda US$5-20.",
+          q: "¿Necesito comprar hardware especial o tablets costosas?",
+          a: "No. TapTable funciona en cualquier dispositivo con internet. Tus meseros y cocina pueden usar cualquier tablet, celular o computadora que ya tengan.",
         },
         {
-          q: "¿Puedo cambiar el stack?",
-          a: "Sí, pero el curso (y las docs) asumen este stack. Cambiar pieza por pieza es posible después del curso.",
+          q: "¿Qué pasa si se cae el WiFi de mi restaurante?",
+          a: "Nuestro sistema está optimizado para consumir pocos datos. Si tu red local falla, el personal y los comensales pueden seguir operando usando la red de datos móviles (4G/5G) de sus teléfonos sin interrupciones.",
         },
         {
-          q: "¿Y si me atoro?",
-          a: "Las docs incluyen una sección de troubleshooting con los 20 errores más comunes. Además hay sesión semanal con el docente.",
+          q: "¿Esto reemplaza mi método de cobro o software de caja actual?",
+          a: "TapTable se integra o trabaja en paralelo con tu sistema de cobro actual. Tus clientes pueden pagar de forma digital o solicitar que el mesero les lleve la cuenta para pagar en efectivo o terminal física.",
         },
       ],
     },
